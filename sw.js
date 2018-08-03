@@ -1,4 +1,4 @@
-var StaticCacheName = 'rest-rev-app-v2';
+var StaticCacheName = 'rest-rev-app-v3';
 var urlToCache = [
   '/',
   '/restaurant.html',
@@ -35,7 +35,7 @@ self.addEventListener('activate', function(event) {
       caches.keys().then(function(cacheNames) {
         return Promise.all(
           cacheNames.filter(function(cacheName) {
-            return cacheName.startsWith('rest-') &&
+            return cacheName.startsWith('rest-rev-app-') &&
                     cacheName != StaticCacheName;
           }).map(function(cacheName) {
             return caches.delete(cacheName);
