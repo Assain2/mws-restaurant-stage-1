@@ -1,6 +1,7 @@
-var StaticCacheName = 'rest-rev-app-v3';
+var staticCacheName = 'rest-rev-app-v3';
 var urlToCache = [
   '/',
+  '/index.html',
   '/restaurant.html',
   '/css/styles.css',
   '/data/restaurants.json',
@@ -16,12 +17,13 @@ var urlToCache = [
   '/img/10.jpg',
   '/js/main.js',
   '/js/restaurant_info.js',
-  '/js/dbhelper'
+  '/js/dbhelper',
+  '/js/tabIndexer'
 ];
 
 self.addEventListener('install', function(event) {
     event.waitUntil(
-      caches.open(StaticCacheName).then(function(cache) {
+      caches.open(staticCacheName).then(function(cache) {
         console.log('[SW] Caches opened: ' + cache.url);
         return cache.addAll(urlToCache);
       }).catch(function(error) {
@@ -36,7 +38,7 @@ self.addEventListener('activate', function(event) {
         return Promise.all(
           cacheNames.filter(function(cacheName) {
             return cacheName.startsWith('rest-rev-app-') &&
-                    cacheName != StaticCacheName;
+                    cacheName != staticCacheName;
           }).map(function(cacheName) {
             return caches.delete(cacheName);
           })
