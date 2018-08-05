@@ -32,6 +32,7 @@ initMap = () => {
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
+    mapTabIndex();
   });
 }
 
